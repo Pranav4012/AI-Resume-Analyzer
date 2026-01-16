@@ -21,7 +21,15 @@ if uploaded_file is not None:
             resume_text += text + "\n"
     
     st.success("Resume uploaded successfully!")
-
+    skills = ["python", "java", "html", "css", "sql", "c", "c++"]
+    found_skill = []
+    resume_text = resume_text.lower()
+    
+    for skill in skills :
+        if skill in resume_text :
+            found_skill.append(skill)
+       
+    st.write("found skill:",found_skill)        
     st.subheader("Extracted Resume Text:")
     st.text(resume_text)
 

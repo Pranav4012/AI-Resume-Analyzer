@@ -6,7 +6,10 @@
 ## DAY 2 :-
         1> EXTRACT TEXT FROM PDF 
         2> IMPORT OF Py.PDF2
-## Day 3
+## DAY 3
         1> Extracted resume text
         2> Implemented skill detection logic
-        3> Displayed matched skills on the UI                
+        3> Displayed matched skills on the UI  
+## DAY 4
+        1> Skill matcher between resume and job discription 
+        2> Match percentage calculator                      

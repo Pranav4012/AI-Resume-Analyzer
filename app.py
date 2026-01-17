@@ -28,8 +28,36 @@ if uploaded_file is not None:
     for skill in skills :
         if skill in resume_text :
             found_skill.append(skill)
-       
+
+    user_input = st.text_area("Enter your multiline text here:")
+
+    if user_input:
+        job_skills = []
+        user_input = user_input.lower()
+        
+        for skill in skills:
+            if skill in user_input:
+                job_skills.append(skill)
+
+        matched = []
+
+        for skill in job_skills:
+            if skill in found_skill:
+                matched.append(skill)
+
+        if len(job_skills) > 0:
+            match_percent = (len(matched) / len(job_skills)) * 100
+        else: 
+            match_percent = 0 
+
+        st.write("Matched skill matched ",matched) 
+        st.write("Matched percent: ", round(match_percent,2),"%")        
+        
+        st.write("Job Discription skill: ",job_skills)
+        st.code(user_input)
+    else:
+        st.write("Please enter some text.")  
+              
     st.write("found skill:",found_skill)        
     st.subheader("Extracted Resume Text:")
     st.text(resume_text)
-

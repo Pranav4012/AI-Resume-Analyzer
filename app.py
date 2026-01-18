@@ -50,10 +50,23 @@ if uploaded_file is not None:
         else: 
             match_percent = 0 
 
+        missing_skills = []
+
+        for skill in job_skills:
+            if skill not in found_skill:
+                missing_skills.append(skill)
+
+        st.write("Job Description Skills:", job_skills)
         st.write("Matched skill matched ",matched) 
-        st.write("Matched percent: ", round(match_percent,2),"%")        
+        st.write("Matched percent: ", round(match_percent,2),"%")
+
+        if missing_skills:
+            st.write("You should consider learning or adding these skills:")
+            st.write(missing_skills) 
+        else:
+            st.write("Great! Your resume matches all required skills for this job.")
+            st.code(user_input)       
         
-        st.write("Job Discription skill: ",job_skills)
         st.code(user_input)
     else:
         st.write("Please enter some text.")  

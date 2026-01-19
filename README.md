@@ -15,4 +15,7 @@
         2> Match percentage calculator                      
 ## DAY 5 :-
         1> Missing skills are identified
-        2> User gets a clear suggestion        
+        2> User gets a clear suggestion  
+## DAY 6 :-
+        1> Visually highlight the result
+        2> Separate sections clearly

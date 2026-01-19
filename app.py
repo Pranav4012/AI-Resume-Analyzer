@@ -1,7 +1,6 @@
 import streamlit as st
 from PyPDF2 import PdfReader
 
-
 st.set_page_config(page_title="AI Resume Analyzer", layout="centered")
 
 st.title("AI Resume Analyzer & Job Matcher")
@@ -31,7 +30,7 @@ if uploaded_file is not None:
 
     user_input = st.text_area("Enter your multiline text here:")
 
-    if user_input:
+    if user_input: # creating an empty set for keeping the missing data of user input resume 
         job_skills = []
         user_input = user_input.lower()
         
@@ -44,7 +43,7 @@ if uploaded_file is not None:
         for skill in job_skills:
             if skill in found_skill:
                 matched.append(skill)
-
+#for calculating the percentage for job matching 
         if len(job_skills) > 0:
             match_percent = (len(matched) / len(job_skills)) * 100
         else: 
@@ -55,22 +54,35 @@ if uploaded_file is not None:
         for skill in job_skills:
             if skill not in found_skill:
                 missing_skills.append(skill)
+        
+        st.header("Analysis result")
+        st.subheader("Match Percent")
+        st.write(f"{round(match_percent,2)}%")
 
-        st.write("Job Description Skills:", job_skills)
-        st.write("Matched skill matched ",matched) 
-        st.write("Matched percent: ", round(match_percent,2),"%")
+        if match_percent > 70 :
+            st.success("Great match! Your resume fits this job well.")
+        else:
+            st.warning("This resume needs improvement for this job.")
+        # adding a better way to represent my web page 
+        st.subheader("Job Description Skills")
+        st.write(job_skills)
+        st.subheader("Matched Skills")
+        st.write(matched)
 
-        if missing_skills:
-            st.write("You should consider learning or adding these skills:")
+        if missing_skills: 
+             # this is for checking resume that which skill is missing and will depict it 
+            st.subheader("Missing skills")
             st.write(missing_skills) 
         else:
-            st.write("Great! Your resume matches all required skills for this job.")
+            st.success("You already have all the required skills for this job!")
             st.code(user_input)       
-        
+        st.subheader("Job description")
         st.code(user_input)
     else:
-        st.write("Please enter some text.")  
-              
-    st.write("found skill:",found_skill)        
+        st.write("Please enter some text.")
+
+        #for resume skills and resume text 
+    st.subheader("Resume Skills")          
+    st.write(found_skill)        
     st.subheader("Extracted Resume Text:")
     st.text(resume_text)

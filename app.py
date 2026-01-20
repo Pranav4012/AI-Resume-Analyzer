@@ -37,6 +37,9 @@ if uploaded_file is not None:
         for skill in skills:
             if skill in user_input:
                 job_skills.append(skill)
+        if not job_skills:
+            st.warning("No technical skills detected in the job description.")
+            st.stop()        
 
         matched = []
 
@@ -54,6 +57,8 @@ if uploaded_file is not None:
         for skill in job_skills:
             if skill not in found_skill:
                 missing_skills.append(skill)
+        if not found_skill:
+            st.warning("No recognizable skills found in the resume.")        
         
         st.header("Analysis result")
         st.subheader("Match Percent")
@@ -76,10 +81,12 @@ if uploaded_file is not None:
         else:
             st.success("You already have all the required skills for this job!")
             st.code(user_input)       
+
         st.subheader("Job description")
         st.code(user_input)
     else:
         st.write("Please enter some text.")
+
 
         #for resume skills and resume text 
     st.subheader("Resume Skills")          

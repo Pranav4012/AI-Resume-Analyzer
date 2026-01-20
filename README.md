@@ -19,3 +19,6 @@
 ## DAY 6 :-
         1> Visually highlight the result
         2> Separate sections clearly
+## DAY 7 :-
+        1> Edge-case handling
+        2> Production readiness        
